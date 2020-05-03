@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Enemy2
+  m_Controller: {fileID: 9100000, guid: c63fc93ecc0597647989c989ec4fe6da, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: b9dd7234c09c6df438d449a9fbb7d0e7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c6e9e52dfb865234b95efda29865580b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b0aaed787ad5e394384947263e4400ff, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: db876086979e91541a8861f8eb2e6f63, type: 2}
