@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2476322315321949758}
   - component: {fileID: 2476322315321949759}
   m_Layer: 0
-  m_Name: ExitSign
+  m_Name: Exit
   m_TagString: Exit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2476322315321949752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 3.125, y: 3.125, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
