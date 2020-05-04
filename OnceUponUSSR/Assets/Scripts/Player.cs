@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine; 
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MovingObject
 {
@@ -33,8 +34,8 @@ public class Player : MovingObject
         if (horizontal != 0)
             vertical = 0;
 
-        horizontal = Mathf.Min(horizontal, 1);
-        vertical = Mathf.Min(vertical, 1);
+        if (horizontal != _currectDirection && horizontal != 0)
+            ChangeDirection();
 
         if (horizontal != 0 || vertical != 0)
             AttemptMove<Wall>(horizontal, vertical);
@@ -49,7 +50,7 @@ public class Player : MovingObject
 
     private void Restart()
     {
-        Application.LoadLevel(Application.loadedLevel);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
     }
 
     private void OnDisable()
@@ -62,10 +63,10 @@ public class Player : MovingObject
         if (collision.tag == "Exit") {
             Invoke("Restart", RestartLevelDelay);
             enabled = false;
-        } else if (collision.tag == "food") {
+        } else if (collision.tag == "Food") {
             food += PointsPerFood;
             collision.gameObject.SetActive(false);
-        } else if (collision.tag == "soda") {
+        } else if (collision.tag == "Soda") {
             food += PointsPerSoda;
             collision.gameObject.SetActive(false);
         }
@@ -88,7 +89,7 @@ public class Player : MovingObject
 
         CheckIfGameOver();
 
-        //GameManager.Instance.PlayersTurn = false;
+        GameManager.Instance.PlayersTurn = false;
 
     } 
     public void LoseFood(int loss)

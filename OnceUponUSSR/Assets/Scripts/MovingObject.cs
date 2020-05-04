@@ -12,12 +12,14 @@ public abstract class MovingObject : MonoBehaviour
     private Rigidbody2D _rb2D;
     private float _inverseMoveTime;
 
+    protected float _currectDirection = 1;
+
     protected virtual void Start()
     {
         _boxCollider = GetComponent<BoxCollider2D>();
         _rb2D = GetComponent<Rigidbody2D>();
         _inverseMoveTime = 1f / MoveTime;
-    } 
+    }
 
     protected bool Move(int xDir, int yDir, out RaycastHit2D hit)
     {
@@ -36,11 +38,19 @@ public abstract class MovingObject : MonoBehaviour
         return false;
     }
 
+    protected void ChangeDirection()
+    {
+        Vector3 newDirection = transform.localScale;
+        newDirection.x = -newDirection.x;
+        transform.localScale = newDirection;
+        _currectDirection = -_currectDirection;
+    }
+
     protected IEnumerator SmoothMovement(Vector3 end)
     {
         float sqrRemainingDitance = (transform.position - end).sqrMagnitude;
 
-        while (sqrRemainingDitance > 0.05) {
+        while (sqrRemainingDitance > 0.004) {
 
             Vector3 newPosition = Vector3.MoveTowards(_rb2D.position, end, _inverseMoveTime * Time.deltaTime);
             _rb2D.MovePosition(newPosition);
@@ -48,6 +58,8 @@ public abstract class MovingObject : MonoBehaviour
 
             yield return null;
         }
+
+        _rb2D.MovePosition(end);
 
     } 
 
