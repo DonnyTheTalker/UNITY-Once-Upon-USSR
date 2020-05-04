@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic; 
+using System.Collections.Generic; // Allows to use Lists<T>
 
 using Random = UnityEngine.Random;
 using UnityEngine;
@@ -33,7 +33,9 @@ public class BoardManager : MonoBehaviour
     public GameObject[] EnemyTiles;
     public GameObject[] OuterWallTiles;
 
+    // reference to the Board object
     private Transform _boardHolder;
+    // all of the possible locations
     private List<Vector3> _gridPosition = new List<Vector3>();
 
     void InitialiseList()
