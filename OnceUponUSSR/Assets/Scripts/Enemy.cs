@@ -12,17 +12,13 @@ public class Enemy : MovingObject
 
     protected override void Start()
     {
+        GameManager.Instance.AddEnemyToList(this);
         _animator = GetComponent<Animator>();
         _target = GameObject.FindGameObjectWithTag("Player").transform;
         _skipMove = false;
 
         _currectDirection = -1;
         base.Start();
-    }
-
-    private void Update()
-    {
-        MoveEnemy();
     }
 
     protected override void AttemptMove<T>(int xDir, int yDir)
@@ -40,9 +36,7 @@ public class Enemy : MovingObject
     public void MoveEnemy()
     {
         int xDir = 0;
-        int yDir = 0;
-
-        Debug.Log(Mathf.Abs(_target.transform.position.x - transform.position.x));
+        int yDir = 0; 
 
         if (Mathf.Abs(_target.transform.position.x - transform.position.x) <= 0.003) {
             yDir = _target.transform.position.y < transform.position.y ? -1 : 1;
@@ -61,7 +55,9 @@ public class Enemy : MovingObject
     {
         Player player = component as Player;
 
-        player.LoseFood(Damage);
+        _animator.SetTrigger("EnemyAttack");
+
+        player.LoseFood(Damage); 
 
     }
 
