@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MovingObject
 {
@@ -12,12 +13,14 @@ public class Player : MovingObject
 
     private Animator _animator;
     private int _food;
+    public Text FoodText;
 
     protected override void Start()
     {
         _animator = GetComponent<Animator>();
 
         _food = GameManager.Instance.PlayerFoodPoints;
+        FoodText.text = "Songs left: " + _food;
 
         base.Start();
     }
@@ -65,9 +68,11 @@ public class Player : MovingObject
             enabled = false;
         } else if (collision.tag == "Food") {
             _food += PointsPerFood;
+            FoodText.text = "+ " +  PointsPerFood + " Songs left: " + _food;
             collision.gameObject.SetActive(false);
         } else if (collision.tag == "Soda") {
             _food += PointsPerSoda;
+            FoodText.text = "+ " + PointsPerSoda + " Songs left: " + _food;
             collision.gameObject.SetActive(false);
         }
     }
@@ -83,6 +88,7 @@ public class Player : MovingObject
     protected override void AttemptMove<T>(int xDir, int yDir)
     {
         _food--;
+        FoodText.text = "Songs left: " + _food;
         base.AttemptMove<T>(xDir, yDir);
 
         RaycastHit2D hit;
@@ -96,6 +102,7 @@ public class Player : MovingObject
     {
         _animator.SetTrigger("PlayerHit");
         _food -= loss;
+        FoodText.text = "- " + loss + " Songs left: " + _food;
         CheckIfGameOver();
     }
 
