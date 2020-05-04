@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public int PlayerFoodPoints = 100;
     [HideInInspector] public bool PlayersTurn = true;
 
-    private int _level = 1;
+    private int _level = 2;
 
     private void Awake()
     { 

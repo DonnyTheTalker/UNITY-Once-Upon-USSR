@@ -11,13 +11,13 @@ public class Player : MovingObject
     public float RestartLevelDelay = 1f;
 
     private Animator _animator;
-    private int food;
+    private int _food;
 
     protected override void Start()
     {
         _animator = GetComponent<Animator>();
 
-        food = GameManager.Instance.PlayerFoodPoints;
+        _food = GameManager.Instance.PlayerFoodPoints;
 
         base.Start();
     }
@@ -44,7 +44,7 @@ public class Player : MovingObject
 
     private void CheckIfGameOver()
     {
-        if (food <= 0)
+        if (_food <= 0)
             GameManager.Instance.GameOver();
     }
 
@@ -55,7 +55,7 @@ public class Player : MovingObject
 
     private void OnDisable()
     {
-        GameManager.Instance.PlayerFoodPoints = food;
+        GameManager.Instance.PlayerFoodPoints = _food;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -64,10 +64,10 @@ public class Player : MovingObject
             Invoke("Restart", RestartLevelDelay);
             enabled = false;
         } else if (collision.tag == "Food") {
-            food += PointsPerFood;
+            _food += PointsPerFood;
             collision.gameObject.SetActive(false);
         } else if (collision.tag == "Soda") {
-            food += PointsPerSoda;
+            _food += PointsPerSoda;
             collision.gameObject.SetActive(false);
         }
     }
@@ -82,7 +82,7 @@ public class Player : MovingObject
 
     protected override void AttemptMove<T>(int xDir, int yDir)
     {
-        food--;
+        _food--;
         base.AttemptMove<T>(xDir, yDir);
 
         RaycastHit2D hit;
@@ -95,7 +95,7 @@ public class Player : MovingObject
     public void LoseFood(int loss)
     {
         _animator.SetTrigger("PlayerHit");
-        food -= loss;
+        _food -= loss;
         CheckIfGameOver();
     }
 
