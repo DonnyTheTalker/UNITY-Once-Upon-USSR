@@ -112,7 +112,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &467599070
+--- !u!1001 &177569752
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -181,6 +181,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 436cdb2511cc635479fe767b2f452dbd, type: 3}
+--- !u!1 &177569753 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6392232897982688026, guid: 436cdb2511cc635479fe767b2f452dbd,
+    type: 3}
+  m_PrefabInstance: {fileID: 177569752}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &177569754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177569753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d9d946e0ff77b4cb5a0d96fe5d5584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveTime: 0.1
+  BlockingLayer:
+    serializedVersion: 2
+    m_Bits: 288
+  WallDamage: 1
+  PointsPerFood: 10
+  PointsPerSoda: 20
+  RestartLevelDelay: 0.5
 --- !u!1 &1800972112
 GameObject:
   m_ObjectHideFlags: 0

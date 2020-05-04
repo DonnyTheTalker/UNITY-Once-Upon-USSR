@@ -17,22 +17,7 @@ public abstract class MovingObject : MonoBehaviour
         _boxCollider = GetComponent<BoxCollider2D>();
         _rb2D = GetComponent<Rigidbody2D>();
         _inverseMoveTime = 1f / MoveTime;
-    }
-
-    protected IEnumerator SmoothMovement(Vector3 end)
-    {
-        float sqrRemainingDitance = (transform.position - end).sqrMagnitude;
-
-        while (sqrRemainingDitance > float.Epsilon) {
-
-            Vector3 newPosition = Vector3.MoveTowards(_rb2D.position, end, _inverseMoveTime * Time.deltaTime);
-            _rb2D.MovePosition(newPosition);
-            sqrRemainingDitance = (transform.position - end).sqrMagnitude;
-
-            yield return null;
-        }
-
-    }
+    } 
 
     protected bool Move(int xDir, int yDir, out RaycastHit2D hit)
     {
@@ -50,6 +35,21 @@ public abstract class MovingObject : MonoBehaviour
 
         return false;
     }
+
+    protected IEnumerator SmoothMovement(Vector3 end)
+    {
+        float sqrRemainingDitance = (transform.position - end).sqrMagnitude;
+
+        while (sqrRemainingDitance > 0.05) {
+
+            Vector3 newPosition = Vector3.MoveTowards(_rb2D.position, end, _inverseMoveTime * Time.deltaTime);
+            _rb2D.MovePosition(newPosition);
+            sqrRemainingDitance = (transform.position - end).sqrMagnitude;
+
+            yield return null;
+        }
+
+    } 
 
     protected virtual void AttemptMove<T>(int xDir, int yDir)
         where T : Component
