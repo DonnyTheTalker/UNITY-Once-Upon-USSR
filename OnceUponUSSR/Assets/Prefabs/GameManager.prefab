@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Columns: 8
-  Rows: 8
+  Rows: 10
   WallCount:
     Minimum: 5
     Maximum: 9
@@ -93,3 +93,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BoardScript: {fileID: 0}
+  PlayerFoodPoints: 100
+  TurnDelay: 0.1
+  LevelLoadDelay: 2
+  PlayersTurn: 1
+  EasterEggsText:
+  - Why we still here?
+  - Did I ever tell you what the definition of insanity is?
+  - Which plane is the best known at the theatre of the war?
+  - How many fighter-planes were there?
+  - You see, what happens?
+  EasterEggsLevel: 03000000070000000f000000170000001e000000

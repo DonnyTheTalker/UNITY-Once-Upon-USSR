@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public bool PlayersTurn = false;
 
+    public List<string> EasterEggsText;
+    public List<int> EasterEggsLevel;
+
     private int _level = 1;
     private List<Enemy> _enemies;
     private bool _enemiesMoving = false;
@@ -65,13 +68,26 @@ public class GameManager : MonoBehaviour
     {
         _doingSetup = true;
         _levelImage = GameObject.Find("Background");
-        _levelText = GameObject.Find("LevelText").GetComponent<Text>();
-        _levelText.text = "Day " + _level.ToString();
+        _levelText = GameObject.Find("LevelText").GetComponent<Text>(); 
         _levelImage.SetActive(true);
+        SetLevelText();
         Invoke("HideLevelImage", LevelLoadDelay);
 
         _enemies.Clear();
         BoardScript.SetupScene(_level);
+    }
+
+    void SetLevelText()
+    {
+        if (EasterEggsLevel.Count > 0 && EasterEggsLevel[0] <= _level) {
+
+            _levelText.text = EasterEggsText[0];
+            EasterEggsLevel.RemoveAt(0);
+            EasterEggsText.RemoveAt(0);
+
+        } else {
+            _levelText.text = "Day " + _level.ToString();
+        }
     }
 
     private void HideLevelImage()

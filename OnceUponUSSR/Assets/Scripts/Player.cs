@@ -111,10 +111,10 @@ public class Player : MovingObject
         FoodText.text = "Songs left: " + _food;
         base.AttemptMove<T>(xDir, yDir);
 
-        RaycastHit2D hit;
+        RaycastHit2D hit; 
+        _food--;
 
-        if (Move(xDir, yDir, out hit)) {
-            _food--;
+        if (Move(xDir, yDir, out hit)) { 
             SoundManager.Instance.RandomizeSfx(MoveSound1, MoveSound2);
         }
 
