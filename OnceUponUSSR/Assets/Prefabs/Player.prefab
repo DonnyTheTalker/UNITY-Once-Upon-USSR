@@ -170,3 +170,10 @@ MonoBehaviour:
   PointsPerSoda: 20
   RestartLevelDelay: 0.5
   FoodText: {fileID: 0}
+  MoveSound1: {fileID: 8300000, guid: 0ea7df9a45709894e8bc889869fc1eab, type: 3}
+  MoveSound2: {fileID: 8300000, guid: d19d0dc3ed36ed24ba81b15c804d3913, type: 3}
+  EatSound1: {fileID: 8300000, guid: cada54509aae29249ba35b84e1df5362, type: 3}
+  EatSound2: {fileID: 8300000, guid: ca326ed3c8a851445a07b82fd2fd214d, type: 3}
+  DrinkSound1: {fileID: 8300000, guid: 0be74c9052c6e8c488e41b79e1431a63, type: 3}
+  DrinkSound2: {fileID: 8300000, guid: 5f28adf4fb3564745a9af1c21eb59189, type: 3}
+  DieSound: {fileID: 8300000, guid: ba0719ba7307a984289c37516c65c607, type: 3}

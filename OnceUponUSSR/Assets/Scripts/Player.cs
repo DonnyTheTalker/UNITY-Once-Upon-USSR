@@ -15,6 +15,14 @@ public class Player : MovingObject
     private int _food;
     public Text FoodText;
 
+    public AudioClip MoveSound1;
+    public AudioClip MoveSound2;
+    public AudioClip EatSound1;
+    public AudioClip EatSound2;
+    public AudioClip DrinkSound1;
+    public AudioClip DrinkSound2;
+    public AudioClip DieSound;
+
     protected override void Start()
     {
         _animator = GetComponent<Animator>();
@@ -47,8 +55,13 @@ public class Player : MovingObject
 
     private void CheckIfGameOver()
     {
-        if (_food <= 0)
+        if (_food <= 0) {
+
+            SoundManager.Instance.MusicSource.Stop();
+            SoundManager.Instance.PlaySingle(DieSound);
             GameManager.Instance.GameOver();
+
+        }
     }
 
     private void Restart()
@@ -64,16 +77,24 @@ public class Player : MovingObject
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Exit") {
+
             Invoke("Restart", RestartLevelDelay);
             enabled = false;
+
         } else if (collision.tag == "Food") {
+
+            SoundManager.Instance.RandomizeSfx(EatSound1, EatSound2);
             _food += PointsPerFood;
             FoodText.text = "+ " +  PointsPerFood + " Songs left: " + _food;
             collision.gameObject.SetActive(false);
+
         } else if (collision.tag == "Soda") {
+
+            SoundManager.Instance.RandomizeSfx(DrinkSound1, DrinkSound2);
             _food += PointsPerSoda;
             FoodText.text = "+ " + PointsPerSoda + " Songs left: " + _food;
             collision.gameObject.SetActive(false);
+
         }
     }
 
@@ -86,12 +107,16 @@ public class Player : MovingObject
     }
 
     protected override void AttemptMove<T>(int xDir, int yDir)
-    {
-        _food--;
+    { 
         FoodText.text = "Songs left: " + _food;
         base.AttemptMove<T>(xDir, yDir);
 
         RaycastHit2D hit;
+
+        if (Move(xDir, yDir, out hit)) {
+            _food--;
+            SoundManager.Instance.RandomizeSfx(MoveSound1, MoveSound2);
+        }
 
         CheckIfGameOver();
 
@@ -99,7 +124,7 @@ public class Player : MovingObject
 
     } 
     public void LoseFood(int loss)
-    {
+    {  
         _animator.SetTrigger("PlayerHit");
         _food -= loss;
         FoodText.text = "- " + loss + " Songs left: " + _food;

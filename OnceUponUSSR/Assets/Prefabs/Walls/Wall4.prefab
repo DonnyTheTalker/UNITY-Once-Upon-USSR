@@ -121,3 +121,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DamageSprite: {fileID: 21300102, guid: 86166e3e3715fa5469e07dd2997bae26, type: 3}
   HP: 3
+  ChopSound1: {fileID: 8300000, guid: a97a440df3c4312449e2ff48bd2eabbb, type: 3}
+  ChopSound2: {fileID: 8300000, guid: 08f966ad55d450d4aab2b8b8e846087b, type: 3}

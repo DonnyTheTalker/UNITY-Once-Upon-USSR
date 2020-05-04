@@ -8,6 +8,9 @@ public class Wall : MonoBehaviour
     public Sprite DamageSprite;
     public int HP = 3;
 
+    public AudioClip ChopSound1;
+    public AudioClip ChopSound2;
+
     private SpriteRenderer _spriteRenderer;
 
     private void Awake()
@@ -16,12 +19,13 @@ public class Wall : MonoBehaviour
     }
 
     public void TakeDamage(int loss)
-    {
+    { 
+        SoundManager.Instance.RandomizeSfx(ChopSound1, ChopSound2);
+
         _spriteRenderer.sprite = DamageSprite;
         HP -= loss;
         if (HP <= 0)
-            gameObject.SetActive(false);
- 
+            gameObject.SetActive(false); 
     }
 
 
